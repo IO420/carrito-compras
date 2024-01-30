@@ -1,40 +1,48 @@
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
 import {item} from "../ConteinerList/ConteinerList";
-import indra from '@/imagenes/indra_01.jpg'
-import faber1 from '@/imagenes/faber-castell-black-edition-50.png'
-
-
-//const imagenes = requiere.context('@/imagenes',true)
 
 interface itemProps{
   item: item;
+  onAddItem: (item:item)=> void;
 }
 
-export default function Item({item}:itemProps) {
- 
-  return (
-    <div className="container d-flex "style={{background:"#E3E0DD"}}>
+export default function Item({
+  item,
+  onAddItem,
+}:itemProps) {
 
-        <div>
+ 
+  return item && (
+
+    <div className="border border-black container d-flex p-0 my-3  rounded justify-content-between "style={{flex: 1,maxWidth:"120vh",maxHeight:"100vh"}}>
+
+        <div className="p-1">
           <Image
-          //src={`@/${imgid}.jpg`}
-          src={faber1}
+          src={item.img}
           width={200}
           height={200}
           alt="img"
           />
         </div>
 
-        <div className="d-flex flex-column align-items-center" style={{minWidth:"100vh"}}>
-          <h5 style = {{flex: 1,background:"#ffffff",color:"#000000"}}>titulo</h5>
-          <p style = {{flex: 1,background:"#ffffff",color:"#000000"}}>description</p>
-          <h6 style = {{flex: 1,background:"#ffffff",color:"#000000"}}>costo</h6>
+        <div className="d-flex flex-column align-items-center p-1" >
+
+          <h4 style = {{flex: 1}}>{item.titulo}</h4>
+          <p className="fs-5 "style = {{flex: 1}}>{item.description}</p>
+          <h4 style = {{flex: 1}}>${item.costo}</h4>
         </div>
 
-        <div className="d-flex flex-column align-content-center justify-content-center ">
-          <button type="button">ver</button>
-          <button type="button">Comprar</button>
+        <div className="d-flex flex-column align-content-center justify-content-center p-1" >
+          <button className="m-2 rounded fs-1 "type="button" style={{background:"#ffffff",border:"1px solid #0077D5",color: "#0077D5" }}>ver</button>
+          <button 
+          className="m-2 rounded text-white fs-1 "
+          type="button" 
+          style={{background:"#0077D5",border:"1px solid #0077D5"}}
+          onClick={()=> onAddItem(item)}
+          >
+            Comprar
+          </button>
         </div>
     </div>
   )
