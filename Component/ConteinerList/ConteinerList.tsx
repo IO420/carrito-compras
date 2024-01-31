@@ -74,9 +74,12 @@ export default function ConteinerList() {
       />
     ))}
 
-    <ListCarrito
+    {car.map((car, index) => (
+      <ListCarrito
       car={car}
-    />
+      key={index}
+      />
+    ))}
   </>
   )
 }
