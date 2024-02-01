@@ -15,7 +15,7 @@ export default function Item({
  
   return item && (
 
-    <div className="border border-black container d-flex p-0 my-3  rounded justify-content-between "style={{flex: 1,maxWidth:"120vh",maxHeight:"100vh"}}>
+    <div className="border border-black container d-flex p-0 my-3  rounded justify-content-between "style={{flex: 1,maxHeight:"50vh"}}>
 
         <div className="p-1">
           <Image
@@ -26,11 +26,12 @@ export default function Item({
           />
         </div>
 
-        <div className="d-flex flex-column align-items-center p-1" >
+        <div className="d-flex flex-column align-items-center p-1 " >
 
-          <h4 style = {{flex: 1}}>{item.titulo}</h4>
-          <p className="fs-5 "style = {{flex: 1}}>{item.description}</p>
-          <h4 style = {{flex: 1}}>${item.costo}</h4>
+          <h4 >{item.titulo}</h4>
+          <p className="fs-5 ">{item.description}</p>
+          <h4 >${item.costo}</h4>
+
         </div>
 
         <div className="d-flex flex-column align-content-center justify-content-center p-1" >

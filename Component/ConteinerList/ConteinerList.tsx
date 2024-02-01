@@ -2,6 +2,10 @@
 import React, {useState} from 'react';
 import Item from '../Item/Item';
 import ListCarrito from '../ListCarrito/ListCarrito';
+import Navba from "../Navbar/Navba";
+
+
+export var count:number = 0;
 
 export interface item{
     id:number;
@@ -29,31 +33,36 @@ const itemArray: item[] =[
     }
 
 ];
-const carArray: item[] =[];
-
-
 
 export default function ConteinerList() {
 
   const [list, setlist] = useState<item[]>(itemArray);
-  const [car, setcar] = useState<item[]>(carArray);
+  const [car, setCar] = useState<item[]>([]);
   const [isShowcar,setIsShowCar] = useState<boolean>(false);
 
   const handleAddCar = (item:item) => {
+ 
+    count ++;
     console.log(item.id);
-    setcar((car)=>{ 
+    setCar((car)=>{ 
       const updateCar = [...car,item];
       console.log(updateCar);
       return updateCar;
     });
   }
 
+
+  const handleDeleteCar = (id:number) => {
+    console.log(id)
+    setCar(car.filter((item)=> item.id !== id));
+  };
+
   const HandleShowCar = (): void => {
     setIsShowCar(!isShowcar);
   };
 
   const handleOnShowCar = (itemToStore:item) =>{
-    setcar(
+    setCar(
       car.map((item) => {
           if (item.id === itemToStore.id) {
             return itemToStore;
@@ -73,13 +82,16 @@ export default function ConteinerList() {
         onAddItem={handleAddCar}
       />
     ))}
-
-    {car.map((car, index) => (
-      <ListCarrito
-      car={car}
-      key={index}
-      />
-    ))}
-  </>
+    <Navba>
+      {car.map((car, index) => (
+          <ListCarrito
+          car={car}
+          key={index}
+          onDeleteCar={handleDeleteCar}
+          
+          />
+      ))}  
+    </Navba>
+    </>
   )
 }
