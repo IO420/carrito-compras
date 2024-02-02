@@ -51,6 +51,9 @@ export default function ConteinerList() {
     });
   }
 
+ const handleaddcar = (id:number) => {
+  
+ }
 
   const handleDeleteCar = (id:number) => {
     console.log(id)
