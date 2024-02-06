@@ -1,7 +1,8 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Image from 'next/image'
-import {item , count} from "../ConteinerList/ConteinerList";
-import { useState } from 'react'
+import {item} from "../ConteinerList/ConteinerList";
+
 
 interface carProps{
     car: item;
@@ -12,6 +13,24 @@ export default function ListCarrito({
     car,
     onDeleteCar,
 }:carProps) {
+
+
+    let contador = 1;
+    const [contador2,setcontador]  = useState<number>(contador)
+  
+    const handlecontador = () => {
+      setcontador((contador2) => contador2 + 1);
+      contador=contador2;
+    }
+  
+    const handledecremen = () => {
+      contador2>1 ? 
+      setcontador((contador2) => contador2 - 1):contador
+  
+      contador=contador2;
+    }
+    
+
   return car &&(
     <div 
     className="container border border-black d-flex flex-column p-3 m-0"
@@ -38,14 +57,15 @@ export default function ListCarrito({
                     maxWidth:"160px" 
                     }}
                 >
-                    <div>
-                        <h4 className='p-3 m-0' style={{minWidth:"50px"}}>-</h4>
+                    <div  onClick={handledecremen}>
+                        <h4 className='p-3 m-0' style={{minWidth:"50px"}} >-</h4>
+                        
                     </div>
                     <div>
-                        <h4 className='p-3 m-0' style={{minWidth:"50px"}}>{count}</h4>
+                        <h4 className='p-3 m-0' style={{minWidth:"50px"}}>{contador2}</h4>
                     </div>
-                    <div>
-                        <h4 className='p-3 m-0' style={{minWidth:"50px"}}>+</h4>
+                    <div onClick={handlecontador}>
+                        <h4 className='p-3 m-0' style={{minWidth:"50px"}} >+</h4>
                     </div>
                 </div>
 
@@ -59,13 +79,8 @@ export default function ListCarrito({
                 >
                     borrar
                 </button>
-
             </div>
-
             <div className="d-flex flex-column align-content-center justify-content-center p-1" >
-                
-                
-
             </div>
         </div>
     </div>
