@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ReactNode } from "react";
+import Header from '../Component/Header/Header'
+import Footer from "../Component/Footer/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html>
+      <body>
+    <div className="d-flex flex-column align-content-center " style={{minHeight:"100vh"}}>
+        <Header/>
+            <main style = {{flex: 1,background:"#ffffff",color:"#000000"}}>{children}</main>
+        <Footer/>
+    </div>
+    </body>
     </html>
-  );
+
+  )
 }
